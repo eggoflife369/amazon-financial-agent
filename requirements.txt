@@ -1,0 +1,23 @@
+# Web Server & API
+fastapi
+uvicorn
+requests
+
+# LangChain & Agentic Framework
+langgraph
+langchain-aws
+langchain-core
+
+# Observability
+langfuse
+
+# Financial Data Tools
+yfinance
+pandas
+
+# Cloud & Security
+boto3
+python-dotenv
+
+# Interface
+streamlit
