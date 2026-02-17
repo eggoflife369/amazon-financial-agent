@@ -257,10 +257,16 @@ Authentication: The /chat endpoint is protected. It requires a valid Bearer Toke
 Observability: Every reasoning step (Thought, Tool Call, Output) is logged in Langfuse Cloud. This provides a full audit trail and real-time cost monitoring.
 
 
+## 📺 Project Demos
+* [**UI & Authentication Flow**](https://youtu.be/KUWZYsZH7Do) - Full demo of the Streamlit interface and AWS Cognito login.
+* [**Backend & Notebook Trace**](https://youtu.be/v96GMhtlAgA) - Detailed execution of the LangGraph agent and Langfuse traces.
+
+
 
 💡 Note for the Reviewer
 
 
 
 This project implements a Temporal Bias Bypass within the System Prompt. This ensures the LLM treats 2024 and 2025 data as historical facts rather than future predictions, overcoming standard model knowledge limitations.
+
 
