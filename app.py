@@ -8,11 +8,9 @@ import base64
 import os
 from dotenv import load_dotenv
 
-# Configuración de página
 st.set_page_config(page_title="Amazon Financial Agent", page_icon="📈", layout="wide")
 load_dotenv()
 
-# --- ESTILOS CUSTOM ---
 st.markdown("""
     <style>
     .main { background-color: #0e1117; }
@@ -24,13 +22,11 @@ st.markdown("""
 st.title("🚀 Amazon Financial Agent")
 st.subheader("Análisis de Grado Empresarial con Claude 3.5 & AWS")
 
-# --- LÓGICA DE COGNITO ---
 def get_secret_hash(username, client_id, client_secret):
     message = username + client_id
     dig = hmac.new(str(client_secret).encode('utf-8'), msg=str(message).encode('utf-8'), digestmod=hashlib.sha256).digest()
     return base64.b64encode(dig).decode()
 
-# Sidebar para Login
 with st.sidebar:
     st.header("🔑 Autenticación")
     email = st.text_input("Email", value="test_user@example.com")
@@ -52,16 +48,13 @@ with st.sidebar:
         except Exception as e:
             st.error(f"Error: {e}")
 
-# --- CHAT INTERFACE ---
 if "messages" not in st.session_state:
     st.session_state.messages = []
 
-# Mostrar historial
 for message in st.session_state.messages:
     with st.chat_message(message["role"]):
         st.markdown(message["content"])
 
-# Input de Usuario
 if prompt := st.chat_input("Pregunta sobre Amazon (Ej: Precio actual o Q4 2024)"):
     if "token" not in st.session_state:
         st.warning("⚠️ Por favor, inicia sesión primero.")
@@ -70,7 +63,6 @@ if prompt := st.chat_input("Pregunta sobre Amazon (Ej: Precio actual o Q4 2024)"
         with st.chat_message("user"):
             st.markdown(prompt)
 
-        # Respuesta del Agente con Streaming
         with st.chat_message("assistant"):
             response_placeholder = st.empty()
             full_response = ""
@@ -85,7 +77,6 @@ if prompt := st.chat_input("Pregunta sobre Amazon (Ej: Precio actual o Q4 2024)"
                             try:
                                 data = json.loads(chunk)
                                 
-                                # Lógica para mostrar eventos de LangGraph
                                 if "agent" in data:
                                     msg = data["agent"]["messages"][-1]
                                     if isinstance(msg, str):
